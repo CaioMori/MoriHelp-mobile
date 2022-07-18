@@ -6,6 +6,13 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "prepare": "husky install",
+    "lint": "eslint \"src/**/*.ts{x,}\" --fix",
+    "commit": "yarn git-cz",
+    "prettier": "yarn --silent prettier:format && git update-index --again",
+    "prettier:check": "echo '>> Running Prettier checks...' && prettier --check '**/*[.ts|.js]*'",
+    "prettier:format": "echo '>> Running Prettier fixes...' && prettier --write '**/*[.ts|.js]*' --loglevel warn",
+    "ts:check": "tsc --noEmit",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -14,14 +21,40 @@
     "expo-status-bar": "~1.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "prettier": "^2.7.1",
     "react-native": "0.68.2",
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "@types/react": "~17.0.21",
+    "commitlint": "^16.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
     "@types/react-native": "~0.67.6",
     "typescript": "~4.3.5"
   },
-  "private": true
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "echo '>> Pre-commit checks' && lint-staged && yarn prettier"
+    }
+  },
+  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

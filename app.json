@@ -2,9 +2,8 @@
   "expo": {
     "name": "moriHelp",
     "slug": "moriHelp",
+    "orientation": "portrait",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }
