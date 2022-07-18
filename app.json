@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "moriHelp",
+    "slug": "moriHelp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
