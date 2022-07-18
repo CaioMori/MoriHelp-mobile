@@ -1,21 +1,14 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {VStack, Heading} from 'native-base'
 
 const SignInPage = () => {
   return (
-    <View style={styles.container}>
-      <Text>SignInPage</Text>
-    </View>
+    <VStack flex={1} bg={'gray.600'} alignItems='center' px={8} pt={24}>
+      <Heading color={'gray.100'} fontSize={'xl'} mt={20} mb={26}>
+        SignInPage
+      </Heading>
+    </VStack>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
 
 export default SignInPage
