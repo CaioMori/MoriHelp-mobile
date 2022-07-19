@@ -5,11 +5,21 @@ import Logo from '../../assets/logo_secondary.svg'
 import {Button} from '../../components/button'
 import {Filter} from '../../components/filter'
 import {Order, OrderProps} from '../../components/order'
+import {useNavigation} from '@react-navigation/native'
 
 export function HomePage() {
+  const {colors} = useTheme()
+  const navigation = useNavigation()
   const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>('open')
   const [orders, setOrders] = useState<OrderProps[]>([])
-  const {colors} = useTheme()
+
+  const handleNewOrder = () => {
+    navigation.navigate('register')
+  }
+
+  const handleDetails = (orderId: number) => {
+    navigation.navigate('details', {orderId})
+  }
 
   return (
     <VStack flex={1} bg='gray.700' pb={6}>
@@ -19,8 +29,8 @@ export function HomePage() {
       </HStack>
       <VStack flex={1} px={6}>
         <HStack mt={8} mb={4} justifyContent='space-between' alignItems='center'>
-          <Heading color='gray.100'>Meus chamados</Heading>
-          <Text color='gray.200'>3</Text>
+          <Heading color='gray.100'>Solicitações</Heading>
+          <Text color='gray.200'>{orders.length}</Text>
         </HStack>
         <HStack space={3} mb={8}>
           <Filter type='open' onPress={() => setStatusSelected('open')} isActive={statusSelected === 'open'}>
@@ -43,9 +53,9 @@ export function HomePage() {
             </Center>
           )}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Order onPress={console.log} data={item} />}
+          renderItem={({item}) => <Order onPress={() => handleDetails(item.id)} data={item} />}
         />
-        <Button>Nova solicitação</Button>
+        <Button onPress={handleNewOrder}>Nova solicitação</Button>
       </VStack>
     </VStack>
   )

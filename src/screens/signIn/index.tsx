@@ -5,7 +5,7 @@ import {Input} from '../../components/input'
 import {Envelope, Key} from 'phosphor-react-native'
 import {Button} from '../../components/button'
 
-const SignInPage = () => {
+export function SignInPage() {
   const {colors} = useTheme()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -44,5 +44,3 @@ const SignInPage = () => {
     </VStack>
   )
 }
-
-export default SignInPage
